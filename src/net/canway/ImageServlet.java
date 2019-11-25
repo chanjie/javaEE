@@ -23,12 +23,14 @@ public class ImageServlet extends HttpServlet {
 
         //获取图片的输入流对象     "/"只能给Servlet的对象去使用才有着特殊的含义，  request response 。或者是给浏览器去使用。
 
-        ServletContext servletContext = this.getServletContext();  //servletCOntext代表了当前的工程.
+        resp.setHeader("Content-Disposition","attachment;filename=5.jpg" );
+        ServletContext servletContext = req.getServletContext();  //servletCOntext代表了当前的工程.
 		/*String path = servletContext.getRealPath("/images/5.jpg"); // "/"就代表了day10工程，
 		FileInputStream fileInputStream = new FileInputStream(path);*/
+        String realPath = servletContext.getRealPath("/images/5.jpg");
+        System.out.println(realPath);
 
-
-        InputStream fileInputStream  = servletContext.getResourceAsStream("/web_war_exploded/images/5.jpg"); //指定资源文件的名字获取资源文件的输入对象。
+        InputStream fileInputStream  = servletContext.getResourceAsStream("/images/5.jpg"); //指定资源文件的名字获取资源文件的输入对象。
 
         byte[]  buf = new byte[1024];
         int length = 0 ;

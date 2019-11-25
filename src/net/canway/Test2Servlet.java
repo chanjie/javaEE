@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Enumeration;
 import java.util.zip.GZIPOutputStream;
 
 public class Test2Servlet extends HttpServlet {
@@ -23,6 +24,11 @@ public class Test2Servlet extends HttpServlet {
         String url = request.getRequestURI();
         //获取协议的版本
         String protocl = request.getProtocol();
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String nextElement = headerNames.nextElement();
+            System.out.println(nextElement + " : " + request.getHeader(nextElement));
+        }
 
         System.out.println("请求的方式："+method+" 请求的路径："+ url+" 使用的协议："+protocl);
 

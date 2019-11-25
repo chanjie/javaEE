@@ -37,6 +37,7 @@ public class BaseServlet extends HttpServlet {
         try {
             assert clazz != null;
             method = clazz.getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+            Class<?>[] parameterTypes = method.getParameterTypes();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
